@@ -1,0 +1,31 @@
+name: CI - Heart_Disease
+
+on:
+  push:
+    paths:
+      - 'Machine Learning(2025)/Classification/Logistic_Regression/Heart_Disease/**'
+  pull_request:
+    paths:
+      - 'Machine Learning(2025)/Classification/Logistic_Regression/Heart_Disease/**'
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r Machine\ Learning(2025)/Classification/Logistic_Regression/Heart_Disease/requirements.txt
+          pip install pytest
+
+      - name: Run tests
+        run: pytest Machine\ Learning(2025)/Classification/Logistic_Regression/Heart_Disease/tests -v
