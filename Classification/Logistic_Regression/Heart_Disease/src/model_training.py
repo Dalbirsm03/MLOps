@@ -13,6 +13,7 @@ def train_models(X_train,Y_train,X_test,Y_test,C=1.0):
         model = LogisticRegression(max_iter=200, C=C)
         model.fit(X_train,Y_train)
         mlflow.log_param("C", C)
+        
 
         train_acc = accuracy_score(Y_train, model.predict(X_train))
         mlflow.log_metric("train_accuracy", float(train_acc))
